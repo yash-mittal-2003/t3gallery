@@ -2,6 +2,7 @@ import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
 import { db } from "~/server/db";
 import { getMyImages } from "~/server/db/queries";
+import Image from "next/image";
 export const dynamic = "force-dynamic";
 // const mockUrls = [
 //   "https://utfs.io/f/unO1jyZfyPZ3YW79EaDCPewlC0V46EZkvYs2fW3XnH1udjpA",
@@ -18,10 +19,16 @@ async function Images(){
   const images = await getMyImages();
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap justify-center gap-2">
       {images.map((image) => (
-        <div key = {image.id} className="flex w-48 flex-col ">
-          <img src = {image.url} alt = "image"/>
+        <div key={image.id} className="flex h-48 w-48 flex-col">
+        <Image
+          src={image.url}
+          style={{ objectFit: "contain" }}
+          width={192}
+          height={192}
+          alt={image.name}
+        />
           <div>{image.name}</div>
         </div>
       ))}

@@ -1,7 +1,7 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Link from "next/link";
 import { db } from "~/server/db";
-
+import { getMyImages } from "~/server/db/queries";
 export const dynamic = "force-dynamic";
 // const mockUrls = [
 //   "https://utfs.io/f/unO1jyZfyPZ3YW79EaDCPewlC0V46EZkvYs2fW3XnH1udjpA",
@@ -15,9 +15,7 @@ export const dynamic = "force-dynamic";
 //   url,
 // }));
 async function Images(){
-  const images = await db.query.images.findMany({
-    orderBy:(model, {desc}) => desc(model.id),
-  });
+  const images = await getMyImages();
 
   return (
     <div className="flex flex-wrap gap-2">
@@ -28,7 +26,7 @@ async function Images(){
         </div>
       ))}
     </div>
-  )
+  );
 }
 export default async function HomePage() {
 

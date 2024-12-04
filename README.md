@@ -13,7 +13,8 @@
 - [x] Use Next/Image component
 - [x error management (w/sentry)
 - [x] routing/image page (parallel route)
-- [] ShadUIfy (specifically toast)
+- [x] ShadUIfy (specifically toast)
+- [x] upload button made less crings (added loading state) 
 - [] delete button (w/ server actions)
 - [] analytics (posthog)
 - [] ratelimiting (upstash)
